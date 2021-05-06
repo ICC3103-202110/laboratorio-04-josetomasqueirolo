@@ -1,8 +1,6 @@
 const view = counter => `Count: ${counter}
 
-(+) (-)
-
-(q) for quit`;
+(+) (-)`;
 
 const update = (msg,counter) => {
     if(msg==="+"){
@@ -22,19 +20,12 @@ const app = counter => {
         console.clear()
         const currentView = view(counter)
         console.log(currentView)
-        
-        const readline = require('readline').createInterface({
-            input: process.stdin,
-            output: process.stdout
-          })
-          
-          readline.question(`What would you do? `, msg => {
-            /*counter = update(msg, counter)
-            */
-            console.log(msg)
-            readline.close()
-          })
-
+ 
+        const prompt = require('prompt-sync')();
+ 
+        const msg = prompt('What would you do? ');
+        counter = update(msg,counter)
     }
 }
 
+app(0)
